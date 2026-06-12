@@ -1,0 +1,112 @@
+.evento-card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid var(--border);
+}
+.evento-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+.evento-card:active { transform: translateY(0); }
+
+.evento-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 16px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.evento-card__icon { font-size: 28px; flex-shrink: 0; }
+
+.evento-card__title-block {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.evento-card__title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.3px;
+}
+
+.evento-card__body {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.evento-card__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.evento-card__meta {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.evento-card__club {
+  font-size: 12px;
+  color: var(--primary);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.evento-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+
+.evento-card__costo {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.eventos-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.evento-card__cupos {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(34, 197, 94, 0.15);
+  color: #16a34a;
+  letter-spacing: 0.3px;
+}
+
+.evento-card__cupos--pocos {
+  background: rgba(234, 179, 8, 0.15);
+  color: #ca8a04;
+}
+/* 🔴 pocos = 1-3, cambia emoji a naranja */
+.evento-card__cupos--pocos::before {
+  content: "🟡 ";
+}
+
+.evento-card__cupos--agotado {
+  background: rgba(239, 68, 68, 0.15);
+  color: #dc2626;
+}

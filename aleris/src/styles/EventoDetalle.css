@@ -1,0 +1,294 @@
+/* ── Hero ─────────────────────────────────────────────────────────── */
+.detalle-hero {
+  position: relative;
+  padding: 80px 20px 36px;
+  overflow: hidden;
+}
+.detalle-hero__bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, var(--dark) 0%, #3B1E0F 60%, var(--primary) 120%);
+  z-index: 0;
+}
+.detalle-hero__bg::after {
+  content: '🏐';
+  position: absolute;
+  right: -20px;
+  bottom: -10px;
+  font-size: 120px;
+  opacity: 0.08;
+}
+.detalle-hero__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.detalle-hero__ball { font-size: 48px; }
+.detalle-hero__title {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 1px;
+  line-height: 1.1;
+}
+
+/* ── Event card ───────────────────────────────────────────────────── */
+.detalle-content { gap: 16px; }
+.detalle-card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.detalle-info { display: flex; flex-direction: column; }
+.detalle-info__item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+}
+.detalle-info__item:last-child { border-bottom: none; }
+.detalle-info__item--highlight { background: rgba(234,88,12,0.04); }
+.detalle-info__icon { font-size: 22px; flex-shrink: 0; width: 28px; text-align: center; }
+.detalle-info__label {
+  display: block;
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+.detalle-info__value {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 2px;
+}
+.detalle-info__value--costo {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--primary);
+}
+.detalle-info__sub {
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+/* ── Three-column layout ──────────────────────────────────────────── */
+/* Order: info | inscritos | cancha */
+.detalle-three-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  align-items: start;
+  min-height: calc(100vh - 220px);
+}
+
+.detalle-col { min-width: 0; }
+
+/* Columna 1 — info */
+.detalle-col--info {
+  border-right: 1px solid var(--border, #e5e7eb);
+}
+
+/* Columna 2 — inscritos */
+.detalle-col--participantes {
+  border-right: 1px solid var(--border, #e5e7eb);
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+/* Columna 3 — cancha + botón */
+.detalle-col--cancha {
+  padding: 24px 16px;
+  background: linear-gradient(180deg, #f0fdf0 0%, #f9fef9 100%);
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;   /* stretch so children fill full width */
+  justify-content: flex-start;
+  gap: 16px;
+}
+
+/* Cancha wrapper centres itself inside the stretched column */
+.detalle-col--cancha .cancha-wrapper {
+  align-self: center;
+  width: 100%;
+}
+
+.inscribirse-btn {
+  width: 100%;
+  letter-spacing: 2px;
+  margin-top: 0;
+  flex-shrink: 0;
+}
+
+
+/* ── Participantes panel ──────────────────────────────────────────── */
+.participantes-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid var(--border, #e5e7eb);
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 1;
+}
+.participantes-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text, #1a1a1a);
+  letter-spacing: 0.3px;
+}
+.participantes-count {
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--primary, #ea580c);
+  color: #fff;
+  border-radius: 20px;
+  padding: 2px 10px;
+}
+.participantes-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 48px 24px;
+  color: var(--text-muted, #9ca3af);
+  text-align: center;
+  flex: 1;
+}
+.participantes-empty span { font-size: 36px; }
+.participantes-empty p { font-size: 13px; margin: 0; }
+
+.participantes-list {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  overflow-y: auto;
+  flex: 1;
+}
+.participante-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border, #f3f4f6);
+  transition: background 0.12s;
+}
+.participante-item:last-child { border-bottom: none; }
+.participante-item:hover { background: #fafafa; }
+
+.participante-num {
+  min-width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--primary, #ea580c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.participante-num span {
+  font-size: 11px;
+  font-weight: 800;
+  color: #fff;
+  font-family: var(--font-display, monospace);
+}
+.participante-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1a3a1a, #2e7d32);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.participante-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.participante-nombre {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text, #1a1a1a);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.participante-apodo {
+  font-size: 11px;
+  color: var(--text-muted, #9ca3af);
+  font-style: italic;
+}
+.participante-nivel {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: #2e7d32;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 20px;
+  padding: 2px 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .detalle-three-col {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+  .detalle-col--cancha {
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--border, #e5e7eb);
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .detalle-col--cancha .cancha-wrapper {
+    align-self: center;
+  }
+  .inscribirse-btn { width: 100%; }
+}
+
+@media (max-width: 640px) {
+  .detalle-three-col { grid-template-columns: 1fr; }
+  .detalle-col--info  { border-right: none; border-bottom: 1px solid var(--border, #e5e7eb); }
+  .detalle-col--participantes {
+    border-right: none;
+    border-bottom: 1px solid var(--border, #e5e7eb);
+    max-height: 280px;
+  }
+  .detalle-col--cancha {
+    grid-column: 1;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .inscribirse-btn { width: 100%; }
+}
+

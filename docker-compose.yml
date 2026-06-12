@@ -1,0 +1,100 @@
+services:
+
+  mysql:
+    image: mysql:8
+    container_name: mysql-ssadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: ssadb
+      MYSQL_USER: adminclear
+      MYSQL_PASSWORD: admin
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    networks:
+      - aleris-net
+
+  backend:
+    build: ./ServidorAleris
+    container_name: servidor-aleris
+    restart: always
+    depends_on:
+      - mysql
+      - evolution_api
+    ports:
+      - "9000:9000"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/ssadb
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin
+
+      # Evolution API
+      EVOLUTION_URL: http://evolution_api:8080
+      EVOLUTION_APIKEY: 1511199220020214WILMER
+      EVOLUTION_INSTANCE: Aleris
+    networks:
+      - aleris-net
+
+  frontend:
+    build: ./aleris
+    container_name: aleris-frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+    networks:
+      - aleris-net
+
+  evolution_api:
+    image: evoapicloud/evolution-api:latest
+    container_name: evolution_api
+    restart: always
+    depends_on:
+      - evolution_postgres
+      - evolution_redis
+    env_file:
+      - ./evolution-api/.env
+    volumes:
+      - evolution_instances:/evolution/instances
+    ports:
+      - "8081:8080"
+    expose:
+      - "8080"
+    networks:
+      - aleris-net
+
+  evolution_redis:
+    image: redis:latest
+    container_name: evolution_redis
+    restart: always
+    command: redis-server --appendonly yes
+    volumes:
+      - evolution_redis_data:/data
+    networks:
+      - aleris-net
+
+  evolution_postgres:
+    image: postgres:15
+    container_name: evolution_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: evolution
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - evolution_postgres_data:/var/lib/postgresql/data
+    networks:
+      - aleris-net
+
+volumes:
+  mysql_data:
+  evolution_instances:
+  evolution_redis_data:
+  evolution_postgres_data:
+
+networks:
+  aleris-net:
+    driver: bridge

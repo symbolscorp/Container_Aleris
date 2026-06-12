@@ -1,0 +1,52 @@
+.inscripcion-card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: transform 0.15s;
+}
+.inscripcion-card:hover { transform: translateY(-1px); }
+
+.inscripcion-card__accent {
+  width: 5px;
+  background: linear-gradient(180deg, var(--primary), var(--secondary));
+  flex-shrink: 0;
+}
+
+.inscripcion-card__content {
+  flex: 1;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inscripcion-card__top {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.inscripcion-card__icon { font-size: 24px; flex-shrink: 0; }
+
+.inscripcion-card__title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.inscripcion-card__details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 12px;
+}
+
+.inscripcion-card__details span {
+  font-size: 13px;
+  color: var(--text-muted);
+}

@@ -1,0 +1,174 @@
+.register-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px 16px 40px;
+  position: relative;
+  background: var(--dark);
+  overflow-x: hidden;
+}
+.register-bg {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, var(--dark) 0%, #3B1E0F 100%);
+  z-index: 0;
+}
+.register-container {
+  width: 100%;
+  max-width: 440px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.register-back {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.6);
+  font-size: 15px;
+  cursor: pointer;
+  text-align: left;
+  padding: 8px 0;
+  font-family: var(--font-body);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.register-back:hover { color: #fff; }
+.register-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.register-header span { font-size: 40px; }
+.register-header h1 {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 1px;
+}
+.register-header p { color: rgba(255,255,255,0.5); font-size: 14px; }
+.register-steps {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.register-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
+  font-weight: 600;
+  transition: color 0.3s;
+}
+.register-step.active { color: var(--primary-light); }
+.register-step span {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  font-family: var(--font-display);
+  transition: all 0.3s;
+}
+.register-step.active span {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: #fff;
+}
+.register-step-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.1);
+}
+.register-form {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg);
+  padding: 24px 20px;
+}
+.register-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.register-section h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+.register-form .form-input,
+.register-form .form-select {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.12);
+  color: #fff;
+  width: 100%;
+  box-sizing: border-box;
+}
+.register-form .form-input::placeholder { color: rgba(255,255,255,0.3); }
+.register-form .form-input:focus,
+.register-form .form-select:focus { border-color: var(--primary); background: rgba(255,255,255,0.1); }
+.register-form .form-select option { background: var(--dark-2); color: #fff; }
+.register-form .form-label { color: rgba(255,255,255,0.5); }
+
+/* Fix: date input no desbordarse en móvil */
+.register-form .form-input[type="date"] {
+  width: 100%;
+  box-sizing: border-box;
+  color-scheme: dark;
+}
+
+.register-footer {
+  text-align: center;
+  color: rgba(255,255,255,0.4);
+  font-size: 13px;
+}
+
+/* ── Phone input — tema oscuro ──────────────── */
+.input-phone-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius, 10px);
+  overflow: hidden;
+  background: rgba(255,255,255,0.07);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.input-phone-wrapper:focus-within {
+  border-color: var(--primary, #ea580c);
+  box-shadow: 0 0 0 3px rgba(234,88,12,0.12);
+}
+.input-phone-prefix {
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.05);
+  border-right: 1.5px solid rgba(255,255,255,0.12);
+  white-space: nowrap;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  flex-shrink: 0;
+}
+.form-input--phone {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #fff !important;
+  flex: 1;
+  min-width: 0;
+}
+.form-input--phone::placeholder {
+  color: rgba(255,255,255,0.3) !important;
+}

@@ -1,0 +1,460 @@
+/* =============================================
+   CanchaVoley.css — Volleyball court component
+   ============================================= */
+
+.cancha-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 16px 16px;
+  background: linear-gradient(180deg, #1a3a1a 0%, #0f2a0f 100%);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.07);
+  height: 100%;
+  min-height: 420px;
+  position: sticky;
+  top: 16px;
+}
+
+.cancha-header {
+  text-align: center;
+}
+.cancha-label {
+  display: block;
+  font-family: var(--font-display, 'Bebas Neue', sans-serif);
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.cancha-sublabel {
+  display: block;
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
+/* ── Layout principal (cancha + bancas) ───── */
+.cancha-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+}
+
+/* ── Bancas ─────────────────────────────────── */
+.cancha-bench {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.bench-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.bench-positions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Posición de banca — misma forma que cancha pero estilo diferenciado */
+.cancha-pos--bench {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px dashed rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.06);
+  transition: all 0.18s ease;
+  position: relative;
+  outline: none;
+  gap: 1px;
+}
+
+.cancha-pos--bench.cancha-pos--libre {
+  background: rgba(255,255,255,0.06);
+  border: 2px dashed rgba(255,255,255,0.35);
+}
+.cancha-pos--bench.cancha-pos--libre:hover {
+  background: rgba(255,235,59,0.2);
+  border-color: #ffeb3b;
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(255,235,59,0.35);
+}
+
+.cancha-pos--bench.cancha-pos--selected {
+  background: rgba(234, 88, 12, 0.85);
+  border: 2px solid #ff8c00;
+  transform: scale(1.12);
+  box-shadow: 0 0 16px rgba(234,88,12,0.6), 0 0 4px rgba(255,255,255,0.2);
+}
+
+.cancha-pos--bench.cancha-pos--ocupada {
+  background: rgba(220,38,38,0.7);
+  border: 2px dashed rgba(220,38,38,0.9);
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+/* ── Court ─────────────────────────────────── */
+.cancha-court {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  max-width: 280px;
+  gap: 0;
+  border: 2px solid rgba(255,255,255,0.55);
+  border-radius: 4px;
+  overflow: visible;
+  background: #2d6a2d;
+  box-shadow:
+    0 0 0 6px rgba(255,255,255,0.06),
+    0 4px 24px rgba(0,0,0,0.4);
+}
+
+/* Corner attack-line markers */
+.court-corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: rgba(255,255,255,0.7);
+  border-style: solid;
+  z-index: 2;
+}
+.court-corner--tl { top: -2px; left: -2px; border-width: 2px 0 0 2px; }
+.court-corner--tr { top: -2px; right: -2px; border-width: 2px 2px 0 0; }
+.court-corner--bl { bottom: -2px; left: -2px; border-width: 0 0 2px 2px; }
+.court-corner--br { bottom: -2px; right: -2px; border-width: 0 2px 2px 0; }
+
+/* ── Sides ──────────────────────────────────── */
+.court-side {
+  position: relative;
+  padding: 16px 12px 10px;
+}
+.court-side--a {
+  background: linear-gradient(180deg, #2e7d32 0%, #388e3c 100%);
+  border-bottom: none;
+}
+.court-side--b {
+  background: linear-gradient(180deg, #388e3c 0%, #2e7d32 100%);
+  border-top: none;
+}
+
+/* Attack line (3m line) — dashed stripe */
+.court-side--a::after,
+.court-side--b::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255,255,255,0.5) 0px,
+    rgba(255,255,255,0.5) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+}
+.court-side--a::after { bottom: 8px; }
+.court-side--b::before { top: 8px; }
+
+.court-side__label {
+  display: block;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.court-positions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  justify-items: center;
+}
+
+/* ── Positions ──────────────────────────────── */
+.cancha-pos {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.10);
+  transition: all 0.18s ease;
+  position: relative;
+  outline: none;
+  gap: 1px;
+}
+
+/* 🟢 LIBRE */
+.cancha-pos--libre {
+  background: rgba(255,255,255,0.15);
+  border: 2px solid white;
+}
+.cancha-pos--libre:hover {
+  background: rgba(255, 235, 59, 0.25);
+  border-color: #ffeb3b;
+  transform: scale(1.1);
+  box-shadow: 0 0 12px rgba(255,235,59,0.4);
+}
+
+/* 🔵 SELECCIONADA */
+.cancha-pos--selected {
+  background: #facc15;
+  border: 2px solid #fbbf24;
+  color: #000;
+  transform: scale(1.12);
+  box-shadow: 0 0 16px rgba(250,204,21,0.6), 0 0 4px rgba(255,255,255,0.2);
+}
+
+/* 🔴 OCUPADA */
+.cancha-pos--ocupada {
+  background: #ef4444;
+  border: 2px solid #dc2626;
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+.cancha-pos__num {
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+  font-family: var(--font-display, monospace);
+}
+.cancha-pos--selected .cancha-pos__num {
+  color: #000;
+}
+.cancha-pos--bench .cancha-pos__num {
+  font-size: 13px;
+}
+.cancha-pos__icon {
+  font-size: 8px;
+  color: rgba(255,255,255,0.8);
+  line-height: 1;
+}
+
+/* ── Net ──────────────────────────────────── */
+.court-net {
+  position: relative;
+  height: 24px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  z-index: 3;
+  margin: 0;
+}
+
+.net-post {
+  width: 8px;
+  height: 36px;
+  background: #bdbdbd;
+  border-radius: 2px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+.net-post--top { left: -4px; }
+.net-post--bottom { right: -4px; }
+
+.net-body {
+  flex: 1;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-top: 2.5px solid #e0e0e0;
+  border-bottom: 2.5px solid #e0e0e0;
+  padding: 2px 0;
+  position: relative;
+  background: rgba(0,0,0,0.15);
+}
+
+.net-stripe {
+  height: 1px;
+  background: rgba(255,255,255,0.25);
+  margin: 0 4px;
+}
+
+/* Vertical threads */
+.net-body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 10px,
+    rgba(255,255,255,0.18) 10px,
+    rgba(255,255,255,0.18) 11px
+  );
+}
+
+.net-antenna {
+  position: absolute;
+  width: 4px;
+  height: 32px;
+  border-radius: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+.net-antenna--left {
+  left: 20px;
+  background: repeating-linear-gradient(
+    180deg, #e53935 0px, #e53935 4px, #fff 4px, #fff 8px
+  );
+}
+.net-antenna--right {
+  right: 20px;
+  background: repeating-linear-gradient(
+    180deg, #e53935 0px, #e53935 4px, #fff 4px, #fff 8px
+  );
+}
+
+/* ── Legend ──────────────────────────────── */
+.cancha-legend {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+}
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.3);
+}
+.legend-dot--libre    { background: rgba(255,255,255,0.15); border-color: white; }
+.legend-dot--selected { background: #facc15; border-color: #fbbf24; }
+.legend-dot--ocupada  { background: #ef4444; border-color: #dc2626; }
+.legend-dot--bench    { background: rgba(255,255,255,0.06); border: 1.5px dashed rgba(255,255,255,0.4); }
+
+/* ── Selected info banner ─────────────────── */
+.cancha-selected-info {
+  background: rgba(234,88,12,0.15);
+  border: 1px solid rgba(234,88,12,0.35);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 13px;
+  color: #ffb74d;
+  text-align: center;
+  width: 100%;
+  max-width: 340px;
+}
+.cancha-selected-info strong {
+  color: #ff8c00;
+}
+
+/* ── Responsive ──────────────────────────── */
+@media (max-width: 768px) {
+  .cancha-court { max-width: 220px; }
+  .cancha-pos { width: 44px; height: 44px; }
+  .cancha-pos__num { font-size: 12px; }
+  .cancha-pos--bench { width: 36px; height: 36px; }
+  .cancha-layout { gap: 6px; }
+}
+
+/* 🟣 MI POSICIÓN */
+.cancha-pos--mia {
+  background: #023D54;
+  border: 2px solid #ffffff;
+  cursor: not-allowed;
+}
+.cancha-pos--mia .cancha-pos__num {
+  color: #ffffff;
+}
+
+/* Banner "ya inscrito" */
+.cancha-inscrito-banner {
+  width: 100%;
+  max-width: 280px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  
+}
+
+.cancha-inscrito-banner__title {
+  font-size: 13px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.cancha-inscrito-banner__numeros {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cancha-inscrito-banner__num {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #023D54;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display, monospace);
+}
+
+.cancha-inscribirse-btn {
+  width: 100%;
+  letter-spacing: 2px;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+/* En leyenda */
+.legend-dot--mia { background: #7c3aed; border-color: #a78bfa; }
+
+

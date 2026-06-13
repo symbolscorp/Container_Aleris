@@ -211,3 +211,76 @@
   color: rgba(255,255,255,0.25);
   font-size: 12px;
 }
+
+.voley-overlay {
+  position: fixed;
+  inset: 0;
+  background: transparent;             /* ← pon esto */
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.voley-stage {
+  position: relative;
+  width: 120px;
+  height: 190px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+.voley-ball {
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100px;
+  animation: voley-bounce 0.65s cubic-bezier(0.33,0,0.66,1) infinite alternate;
+}
+.voley-ball svg { width: 100%; height: 100%; }
+.voley-shadow {
+  width: 58px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  animation: voley-shadow 0.65s cubic-bezier(0.33,0,0.66,1) infinite alternate;
+}
+.voley-label {
+  margin-top: 26px;
+  color: #e8e0d0;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+.voley-dots span {
+  animation: voley-dot 1.2s ease-in-out infinite;
+  opacity: 0;
+}
+.voley-dots span:nth-child(2) { animation-delay: 0.25s; }
+.voley-dots span:nth-child(3) { animation-delay: 0.5s; }
+.voley-line {
+  width: 50px;
+  height: 2px;
+  background: #e8873a;
+  border-radius: 2px;
+  margin-top: 10px;
+  animation: voley-line 1.3s ease-in-out infinite alternate;
+}
+@keyframes voley-bounce {
+  from { top: 0px; }
+  to   { top: 82px; }
+}
+@keyframes voley-shadow {
+  from { transform: scale(1);    opacity: 0.28; }
+  to   { transform: scale(0.42); opacity: 0.07; }
+}
+@keyframes voley-dot {
+  0%, 100% { opacity: 0; }
+  50%       { opacity: 1; }
+}
+@keyframes voley-line {
+  from { width: 36px; opacity: 0.55; }
+  to   { width: 64px; opacity: 1; }
+}

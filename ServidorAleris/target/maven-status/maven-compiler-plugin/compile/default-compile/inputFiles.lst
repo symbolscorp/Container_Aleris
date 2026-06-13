@@ -1,7 +1,9 @@
 /Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/AppConfig.java
 /Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/CorsConfig.java
+/Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/IzipayConfig.java
 /Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/ServidoralerisApplication.java
 /Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/ServletInitializer.java
+/Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/common/CrearPagoResponse.java
 /Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/common/ErrorMessages.java
 /Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/common/GlobalResponse.java
 /Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/common/IResponse.java
@@ -12,6 +14,7 @@
 /Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/controller/DashboardController.java
 /Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/controller/EventoController.java
 /Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/controller/InscripcionController.java
+/Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/controller/IzipayController.java
 /Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/controller/UsuarioController.java
 /Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/controller/WhatsAppController.java
 /Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/model/Cancha.java
@@ -23,6 +26,7 @@
 /Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/model/Usuario.java
 /Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/modeldto/CanchaDTO.java
 /Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/modeldto/ClubDTO.java
+/Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/modeldto/CrearPagoRequest.java
 /Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/modeldto/CuentaDTO.java
 /Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/modeldto/CulqiDTO.java
 /Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/modeldto/EventoDTO.java
@@ -45,6 +49,7 @@
 /Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/service/DashboardService.java
 /Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/service/EventoService.java
 /Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/service/InscripcionService.java
+/Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/service/IzipayService.java
 /Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/service/PagoService.java
 /Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/service/UsuarioService.java
 /Users/wilmer/Documents/Proyectos/Proyecto_Aleris/ServidorAleris/src/main/java/com/symbols/servidoraleris/service/WhatsAppService.java

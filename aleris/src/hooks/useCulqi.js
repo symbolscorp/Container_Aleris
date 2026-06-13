@@ -34,7 +34,7 @@ export const useCulqi = (evento) => {
 
       const options = {
         lang: "es",
-        installments: true,
+        installments: false,
         modal: true,
         paymentMethods,
         paymentMethodsSort: Object.keys(paymentMethods),

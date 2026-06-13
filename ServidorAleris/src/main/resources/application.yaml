@@ -16,3 +16,12 @@ logging:
     org.hibernate.orm.jdbc.bind: TRACE
 server:
   port: 9000
+
+izipay:
+  merchant-code: 19769948
+  api-password: testpassword_hfWEPFuhmSwvAF8kEnwox5E7PapIHsyf6pFDT6hqpH5MO
+  base-url: https://api.micuentaweb.pe
+  public-key: 19769948:testpublickey_np6Um5VQH2wtz4mTEgDprZ70xCfwC8YihswXz3XnyX6ZZ
+
+# Producción:
+#   base-url: https://api.micuentaweb.pe

@@ -12,8 +12,9 @@ import { SkeletonCard } from "../components/Loading";
 import { getCuentaByDni } from "../api/cuentaApi";
 import CanchaVoley from "../components/CanchaVoley";
 import Toast from "../components/Toast";
-import { useCulqi } from "../hooks/useCulqi";
+//import { useCulqi } from "../hooks/useCulqi";
 import "../styles/EventoDetalle.css";
+import { useIzipay } from "../hooks/useIzipay";
 const EventoDetalle = () => {
   const { id } = useParams();
   const { login } = useAuth();
@@ -28,7 +29,7 @@ const EventoDetalle = () => {
   const [posicionSeleccionada, setPosicionSeleccionada] = useState(null);
   const [ocupadas, setOcupadas] = useState([]);
   const [participantes, setParticipantes] = useState([]);
-
+  const { abrirCheckout } = useIzipay(evento);
   useEffect(() => {
     const fetchEvento = async () => {
       try {
@@ -80,7 +81,7 @@ const EventoDetalle = () => {
 
   // handleInscribirse solo abre el checkout
 // Agrega esto (pásale evento cuando ya esté cargado)
-  const { culqiListo, abrirCheckout } = useCulqi(evento);
+  //const { culqiListo, abrirCheckout } = useCulqi(evento);
 
   const handleInscribirse = () => {
     if (!cuenta?.id || !evento?.id) return;
@@ -91,65 +92,46 @@ const EventoDetalle = () => {
     // Abre Culqi y cuando devuelva el token, procesa la inscripción
     abrirCheckout(procesarInscripcion);
   };
-  const procesarInscripcion = async (token) => {
-    setInscribiendose(true);
-    try {
 
-      /*
-      const pagoRequest = {
-        token: token,
-        monto: evento.costo,
-        email: 'wilmerpllacho@gmail.com'
-      };
-      const response = await culqiCobrar(pagoRequest)
-      */
-     // Si no hay token, no proceder
-    if (!token) {
+  const procesarInscripcion = async (respuestaPago) => {
+  setInscribiendose(true);
+  try {
+    // respuestaPago viene de onSuccess de Izipay, el cobro ya está hecho
+    if (!respuestaPago) {
       setToast({ message: "No se recibió confirmación del pago.", type: "error" });
       return;
     }
 
-    if (token) { // token llega tanto de tarjeta como de Yape
-      const culqiData = await culqiCobrar({
-        token: token,
-        monto: evento.costo,
-        email: usuario.email,
-      });
-       // cobro exitoso tiene "outcome" con "type": "venta_exitosa"
-      if (culqiData.object === "error") {
-        setToast({ message: culqiData.user_message || "Error en el pago.", type: "error" });
-        return;
-      }
-    }
-   
-      // 2. Crear inscripción (igual que tenías)
-      const inscripcionRes = await createInscripcion({
-        id: 0,
-        cuenta: { id: cuenta.id },
-        evento: { id: evento.id },
-        pago: evento.costo,
-        numero: posicionSeleccionada,
-        tipo: "Jugador",
-        estado: "Inscrito",
-      });
+    // Crear inscripción (igual que antes)
+    const inscripcionRes = await createInscripcion({
+      id: 0,
+      cuenta: { id: cuenta.id },
+      evento: { id: evento.id },
+      pago: evento.costo,
+      numero: posicionSeleccionada,
+      tipo: "Jugador",
+      estado: "Inscrito",
+    });
 
-      if (inscripcionRes?.status === "Error") {
-        setToast({ message: inscripcionRes.message, type: "error" });
-        return;
-      }
-
-      const cuentaRes = await getCuentaByDni(usuario.dni);
-      login(usuario, cuentaRes.data);
-      setSuccess(true);
-      setToast({ message: "¡Pago e inscripción realizados!", type: "success" });
-      await fetchInscripciones(usuario.id);
-      setTimeout(() => navigate("/home"), 2500);
-    } catch (err) {
-      setToast({ message: err.message || "Error al procesar el pago.", type: "error" });
-    } finally {
-      setInscribiendose(false);
+    if (inscripcionRes?.status === "Error") {
+      setToast({ message: inscripcionRes.message, type: "error" });
+      return;
     }
-  };
+
+    const cuentaRes = await getCuentaByDni(usuario.dni);
+    login(usuario, cuentaRes.data);
+    setSuccess(true);
+    setToast({ message: "¡Pago e inscripción realizados!", type: "success" });
+    await fetchInscripciones(usuario.id);
+    setTimeout(() => navigate("/home"), 2500);
+
+  } catch (err) {
+    setToast({ message: err.message || "Error al procesar.", type: "error" });
+  } finally {
+    setInscribiendose(false);
+  }
+};
+
 /*
   const handleInscribirse = async () => {
     if (!cuenta?.id || !evento?.id) return;
@@ -208,6 +190,7 @@ const EventoDetalle = () => {
   );
 
   return (
+    
     <div className="page">
       {toast && (
         <Toast
@@ -323,21 +306,21 @@ const EventoDetalle = () => {
         {/* Columna 3: cancha + botón */}
         <div className="detalle-col detalle-col--cancha">
           <CanchaVoley
-  ocupadas={ocupadas}
-  selectedPos={posicionSeleccionada}
-  onSelect={handleSeleccionarPosicion}
-  totalIntegrantes={evento?.integrantes ?? 0}
-  miCuentaId={cuenta?.id}
-  participantes={participantes}
-  onInscribirse={handleInscribirse}
-  inscribiendose={inscribiendose}
-  success={success}
-/>
+          ocupadas={ocupadas}
+          selectedPos={posicionSeleccionada}
+          onSelect={handleSeleccionarPosicion}
+          totalIntegrantes={evento?.integrantes ?? 0}
+          miCuentaId={cuenta?.id}
+          participantes={participantes}
+          onInscribirse={handleInscribirse}
+          inscribiendose={inscribiendose}
+          success={success}
+        />
           
         </div>
 
       </div>
-
+        <div id="checkout-container"></div>
       <BottomNavigation />
     </div>
   );
